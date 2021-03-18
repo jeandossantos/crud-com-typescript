@@ -57,8 +57,18 @@ const getById = (req:Request, resp:Response) => {
         .catch(e => resp.status(500).send());
 };
 
+const remove = (req:Request, resp:Response) => {
+    knex('users')
+        .where({ id: req.params.id })
+        .first()
+        .del()
+        .then(_ => resp.status(203).send())
+        .catch(e => resp.status(500).send(e));
+};
+
 export default {
     create,
     getAll,
-    getById
+    getById,
+    remove
 };
