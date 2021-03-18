@@ -15,9 +15,9 @@ class App {
     }
 
     private middlewares () {
-        this.app.use(cors({
-            methods: ['POST', 'GET', 'PUT', 'DELETE']
-        }));
+        // this.app.use(cors({
+        //     methods: ['POST', 'GET', 'PUT', 'DELETE']
+        // }));
         this.app.use(express.json());
         this.app.use(helmet());
     }
