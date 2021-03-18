@@ -42,6 +42,22 @@ const create = async (req:Request, resp: Response) => {
         .catch(e => resp.status(500).send(e));
 };
 
+const getAll = (req:Request, resp:Response) => {
+    knex('users')
+        .select('id', 'name', 'email', 'admin', 'deleted_at')
+        .then(users => resp.json(users))
+        .catch(e => resp.status(500).send());
+};
+
+const getById = (req:Request, resp:Response) => {
+    knex('users')
+        .where({ id: req.body.id })
+        .then(user => resp.json(user))
+        .catch(e => resp.status(500).send());
+};
+
 export default {
-    create
+    create,
+    getAll,
+    getById
 };
