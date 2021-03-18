@@ -51,7 +51,8 @@ const getAll = (req:Request, resp:Response) => {
 
 const getById = (req:Request, resp:Response) => {
     knex('users')
-        .where({ id: req.body.id })
+        .where({ id: req.params.id })
+        .first()
         .then(user => resp.json(user))
         .catch(e => resp.status(500).send());
 };
